@@ -34,7 +34,7 @@ class Log
 
     #[ORM\Column]
     #[Groups(['read', 'write'])]
-    private ?int $mood = null;
+    private ?int $mood = 0;
 
     #[ORM\Column]
     #[Groups(['read', 'write'])]

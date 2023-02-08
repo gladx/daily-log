@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Post;
 use App\Repository\LogRepository;
 use App\State\LogProcessor;
 use Doctrine\DBAL\Types\Types;
@@ -15,7 +14,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     normalizationContext: ['groups' => ['read']],
     denormalizationContext: ['groups' => ['write']],
-    processor: LogProcessor::class
+    processor: LogProcessor::class,
+    order: ['id' => 'desc']
     )]
 class Log
 {

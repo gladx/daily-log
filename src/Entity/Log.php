@@ -8,7 +8,9 @@ use App\State\LogProcessor;
 use App\State\LogStateProvider;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Context;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 
 #[ORM\Entity(repositoryClass: LogRepository::class)]
 #[ORM\HasLifecycleCallbacks()]
@@ -40,6 +42,7 @@ class Log
 
     #[ORM\Column]
     #[Groups(['read', 'write'])]
+    #[Context([DateTimeNormalizer::FORMAT_KEY => 'M-j D H:i'])]
     private ?\DateTimeImmutable $createdAt = null;
 
     public function getId(): ?int

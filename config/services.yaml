@@ -29,3 +29,8 @@ services:
     App\State\LogProcessor:
         bind:
             $persistProcessor: '@api_platform.doctrine.orm.state.persist_processor'
+    App\State\LogStateProvider:
+        bind:
+            $itemProvider: '@api_platform.doctrine.orm.state.item_provider'
+            $collectionProvider: '@api_platform.doctrine.orm.state.collection_provider'
+            $defaultTimeZone: '%env(DEFAULT_TIME_ZONE)%'

@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\LogRepository;
 use App\State\LogProcessor;
+use App\State\LogStateProvider;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -15,7 +16,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
     normalizationContext: ['groups' => ['read']],
     denormalizationContext: ['groups' => ['write']],
     processor: LogProcessor::class,
-    order: ['id' => 'desc']
+    order: ['id' => 'desc'],
+    provider: LogStateProvider::class
     )]
 class Log
 {

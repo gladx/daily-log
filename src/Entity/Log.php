@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use App\Enum\LogMood;
 use App\Repository\LogRepository;
 use App\State\LogProcessor;
 use App\State\LogStateProvider;
@@ -36,9 +37,9 @@ class Log
     #[Groups(['read', 'write'])]
     private ?string $content = null;
 
-    #[ORM\Column]
     #[Groups(['read', 'write'])]
-    private ?int $mood = 0;
+    #[ORM\Column(enumType: LogMood::class)]
+    private ?LogMood $mood = LogMood::OK;
 
     #[ORM\Column]
     #[Groups(['read', 'write'])]
@@ -74,12 +75,12 @@ class Log
         return $this;
     }
 
-    public function getMood(): ?int
+    public function getMood(): ?LogMood
     {
         return $this->mood;
     }
 
-    public function setMood(int $mood): self
+    public function setMood(LogMood $mood): self
     {
         $this->mood = $mood;
 

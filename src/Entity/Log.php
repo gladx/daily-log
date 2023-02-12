@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use App\Enum\LogMood;
 use App\Repository\LogRepository;
@@ -21,7 +23,14 @@ use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
     processor: LogProcessor::class,
     order: ['id' => 'desc'],
     provider: LogStateProvider::class
-    )]
+)]
+#[ApiFilter(
+    SearchFilter::class,
+    properties: [
+        'content' => 'partial',
+        'mood' => 'exact'
+    ]
+)]
 class Log
 {
     #[ORM\Id]

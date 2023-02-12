@@ -29,7 +29,10 @@ class LogStateProvider implements ProviderInterface
         }
 
         $item = $this->itemProvider->provide($operation, $uriVariables, $context);
-        $this->changeTimeZone($item);
+
+        if($item instanceof Log) {
+            $this->changeTimeZone($item);
+        }
 
         return $item;
     }
